@@ -1,6 +1,6 @@
 # Protect the planet
 
-##Opis
+## Opis
 
 Protect the planet je 2D igrica. Bazira se na pomeranju player-a gore-dole i pucanju meta koje dolaze. Tokom vremena mete ce se spawn-ovati (stvarati) sve brze dok ne dostignu odredjenu brzinu spawn-ovanja.
 
@@ -9,17 +9,17 @@ Player ce imati i posebnu magiju/moc da unisti sve mete koje su trenutno spawn-o
 
 Cilj igrice je postici sto veci score (unistiti sto veci broj meta).
 
-##Programski jezik i tehnologije
+## Programski jezik i tehnologije
 
 Projekat je implementiran u *Lua* programskom jeziku uz koriscenje *LÖVE* framework-a.
 
-##Pokretanje
+## Pokretanje
 
 Pokretanjem *ProtectThePlanet.exe*. (izvrsni fajl je napravljen za *Windows*)
 
 Alternativno, prevlacenjem folder-a na *love.exe*.
 
-##Autori
+## Autori
 
 Lazar Perisic, *lakiwow95[at]gmail.com*  
 Milos Djuric, *djuric.milos[at]hotmail.com*
