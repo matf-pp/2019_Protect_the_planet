@@ -1,5 +1,4 @@
---E=require "enemy"
---C=require "checks"
+
 V=require "values"
 
 local P={}
@@ -7,37 +6,23 @@ local P={}
 
 
 
---scoreBullets=0
---bulletsUsed=0
-----bulletSpeed=400
---maxBulletSpeed=1000
---minBulletSpeed=200
---maxEnemySpeed=700
---minEnemySpeed=100
---minBulletCooldown=5
-
-
---local poravnanjePlayerX=50
---local poravnanjePlayerY=0
---local poravnanjeBulletX=140
---local poravnanjeBulletY=30
 
 
 -- indikator jaceg bullet-a
 local strongerBullet=0
---P.bulletSpeed=1
+
 local frame
 
 picGore=love.graphics.newImage("iron_gore.png")
 picDole=love.graphics.newImage("iron_dole.png")
 picPucanje1=love.graphics.newImage("iron_pucanje1.png")
 picPucanje2=love.graphics.newImage("iron_pucanje222222.png")
-picIzmedjuPucanja=love.graphics.newImage("iron_izmedjupucanja.png")
 bulletPic=love.graphics.newImage("bullet1.png")
 bulletPicStrong=love.graphics.newImage("bulletstrong.png")
 picSuper=love.graphics.newImage("iron_strong.png")
+picBoom=love.graphics.newImage("boom.png")
+
 frame=picGore
---bulletCooldown=20
 
 P.superPowerCooldown=0
 P.superPowerCooldownIspis="AVAILABLE"
@@ -45,88 +30,26 @@ P.superPowerCooldownIspis="AVAILABLE"
 
 local currentFrame=1
 
---local width=love.graphics.getWidth()
---local height=love.graphics.getHeight()
+
+
 
 P.player={}
 
---P.player.cooldown=20
+
 P.player.size=100
 P.player.x=0+V.poravnanjePlayerX
 P.player.y=V.height/2-P.player.size/2-V.poravnanjePlayerY
 P.player.speed=400
 P.player.bullets={}
---P.player.cooldownNew=20
---    player.bulletSpeed=400
+
+
 
 
 P.player.fire=function()
     if V.playerCooldown<=0 then
         V.playerCooldown=V.playerCooldownNew
 
-        -- sa frame-om pre pucanja
-        -- promeniti if currentFrame==3 or currentFrame==5
-        --if currentFrame==1 or currentFrame==5 then
-        --    currentFrame=2
-        --    frame=picPrePucanja
-        --elseif currentFrame==2 then
-        --    currentFrame=3
-        --    frame=picPucanje1
-        --elseif currentFrame==3 then
-        --    currentFrame=4
-        --    frame=picIzmedjuPucanja
-        --elseif currentFrame==4 then
-        --    currentFrame=5
-        --    frame=picPucanje2
-        --end
 
-        --ova-sa frame-om izmedju pucanja samo pre pucanja1 (nakon pucanja2)
-        -- promeniti if currentFrame==2 or currentFrame==4
-        --if currentFrame==1 or currentFrame==4 then
-        --    currentFrame=2
-        --    frame=picPucanje1
-        --elseif currentFrame==2 then
-        --    currentFrame=3
-        --    frame=picIzmedjuPucanja
-        --elseif currentFrame==3 then
-        --    currentFrame=4
-        --    frame=picPucanje2
-        --end
-
-        ----sa frame-om pre pucanja i pre pucanja1 i pre pucanja2
-        --if currentFrame==1 or currentFrame==5 then
-        --    currentFrame=2
-        --    frame=picIzmedjuPucanja
-        --elseif currentFrame==2 then
-        --    currentFrame=3
-        --    frame=picPucanje1
-        --elseif currentFrame==3 then
-        --    currentFrame=4
-        --    frame=picIzmedjuPucanja
-        --elseif currentFrame==4 then
-        --    currentFrame=5
-        --    frame=picPucanje2
-        --end
-
-
-        --ova-sa frame-om pre pucanja izmedju pucanja1 i pucanja2
-        -- promeniti if currentFrame==2 or currentFrame==4
-        --if currentFrame==1 then
-        --    currentFrame=2
-        --    frame=picPucanje1
-        --elseif currentFrame==2 then
-        --    currentFrame=3
-        --    frame=picIzmedjuPucanja
-        --elseif currentFrame==3 then
-        --    currentFrame=4
-        --    frame=picPucanje2
-        --elseif currentFrame==4 then
-        --    currentFrame=1
-        --    frame=picIzmedjuPucanja
-        --end
-
-        -- bez frame-a pre pucanja
-        -- promeniti if currentFrame==2 or currentFrame==4 izbaciti
         if currentFrame==1 then
             currentFrame=2
             frame=picPucanje1
@@ -135,7 +58,8 @@ P.player.fire=function()
             frame=picPucanje2
         end
 
-        --if currentFrame==2 or currentFrame==4 then
+
+
 
         local bullet={}
 
@@ -155,10 +79,12 @@ P.player.fire=function()
         end
         bullet.x=P.player.x+V.poravnanjeBulletX
         bullet.y=P.player.y+P.player.size/2-bullet.height/2-V.poravnanjeBulletY
-        --bulletsUsed=bulletsUsed+1
+
         table.insert(P.player.bullets,bullet)
-        --end
+
+        return true
     end
+    return false
 end
 
 
@@ -179,9 +105,15 @@ function P:update(dt)
         end
     end
 
+
     if love.keyboard.isDown("space") then
-        P.player:fire()
+        if(P.player:fire()==true) then
+            S.saber2:stop()
+            S.saber2:play()
+        end
     end
+
+
 
 
     if P.superPowerCooldown<=0 then
@@ -189,8 +121,9 @@ function P:update(dt)
 
         if love.keyboard.isDown("k") then
             frame=picSuper
-            --        destroyAll(enemiesAll.enemies)
+            S.boomef:play()
 
+            V.superPowerImage=V.superPowerImageNew
             C.destroyAll(E.enemiesAll.enemies)
             P.superPowerCooldown=20
             P.superPowerCooldownIspis="NOT AVAILABLE"
@@ -212,7 +145,7 @@ function P:update(dt)
 
 
 
-
+    V.superPowerImage=V.superPowerImage-10*dt
     V.playerCooldown=V.playerCooldown-50*dt
     if(P.superPowerCooldown>0) then
         P.superPowerCooldown=P.superPowerCooldown-1*dt
@@ -220,7 +153,9 @@ function P:update(dt)
 end
 
 function P.player:draw()
-
+    if V.superPowerImage>0 then
+        love.graphics.draw(picBoom,175, 130)
+    end
     love.graphics.draw(frame,P.player.x,P.player.y,0,0.6)
 
     for i,b in pairs(self.bullets) do
@@ -230,7 +165,6 @@ function P.player:draw()
         else love.graphics.setColor(255,255,255)
             love.graphics.draw(bulletPic,b.x-30,b.y-20)
         end
-
     end
 end
 
