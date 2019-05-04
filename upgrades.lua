@@ -56,9 +56,7 @@ end
 
 function U:draw()
     for i,u in pairs(U.upgradesAll.upgrades) do
-        --        love.graphics.rectangle("fill",e.x,e.y,enemy.size,enemy.size)
-        --        love.graphics.draw(activeFrame,e.x,e.y)
-        --        love.graphics.draw(activeFrame,e.x-30,e.y)
+
         love.graphics.draw(upgradePics[u.type],u.x,u.y)
     end
 end
