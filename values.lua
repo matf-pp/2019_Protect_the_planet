@@ -34,12 +34,13 @@ V.upgradeSpeed=100
 
 
 V.gamestate="title"
-V.gameOver=false
+--V.gameOver=false
 
 V.poravnanjePlayerX=50
 V.poravnanjePlayerY=0
 V.poravnanjeBulletX=140
 V.poravnanjeBulletY=30
 
+V.started=false
 
 return V
