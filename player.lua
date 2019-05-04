@@ -28,9 +28,6 @@ local strongerBullet=0
 --P.bulletSpeed=1
 local frame
 
-local k=0
-
-
 picGore=love.graphics.newImage("iron_gore.png")
 picDole=love.graphics.newImage("iron_dole.png")
 picPucanje1=love.graphics.newImage("iron_pucanje1.png")
@@ -39,7 +36,6 @@ picIzmedjuPucanja=love.graphics.newImage("iron_izmedjupucanja.png")
 bulletPic=love.graphics.newImage("bullet1.png")
 bulletPicStrong=love.graphics.newImage("bulletstrong.png")
 picSuper=love.graphics.newImage("iron_strong.png")
---picBoom=love.graphics.newImage("boom.png")
 frame=picGore
 --bulletCooldown=20
 
@@ -185,7 +181,6 @@ function P:update(dt)
 
     if love.keyboard.isDown("space") then
         P.player:fire()
-		saber2:play()
     end
 
 
@@ -193,15 +188,10 @@ function P:update(dt)
         P.superPowerCooldownIspis="AVAILABLE"
 
         if love.keyboard.isDown("k") then
-            --love.graphics.draw(background12,0,0)
-			
-			frame=picSuper
-			boomef:play()
-			
+            frame=picSuper
             --        destroyAll(enemiesAll.enemies)
 
             C.destroyAll(E.enemiesAll.enemies)
-			k=20
             P.superPowerCooldown=20
             P.superPowerCooldownIspis="NOT AVAILABLE"
         end
@@ -230,11 +220,9 @@ function P:update(dt)
 end
 
 function P.player:draw()
+
     love.graphics.draw(frame,P.player.x,P.player.y,0,0.6)
-	if k>0 then
-		love.graphics.draw(picBoom,175, 130)
-		k=k-1
-	end
+
     for i,b in pairs(self.bullets) do
         if b.color==1 then
             love.graphics.setColor(255,255,255)
