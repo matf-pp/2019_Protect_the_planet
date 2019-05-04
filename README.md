@@ -31,7 +31,7 @@ P - pauza
 
 K - superpower, unistavaju se svi neprijatelji
 
-esc - izlazak u score meni tokom pauze
+esc - tokom pauze izlazak iz trenutno pokrenute igre
 
 Q - izlazak iz igre tokom pauze
 
