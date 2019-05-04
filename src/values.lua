@@ -43,4 +43,12 @@ V.poravnanjeBulletY=30
 
 V.started=false
 
+--V.mute=false
+--
+--V.muteCooldown=20
+--V.muteCooldownNew=20
+
+V.superPowerImage=0
+V.superPowerImageNew=20
+
 return V
