@@ -30,8 +30,17 @@ function love.load()
     love.graphics.setFont(font)
     love.graphics.setDefaultFilter("nearest","nearest")
     background=love.graphics.newImage("ironmanb1.png")
-    background1=love.graphics.newImage("solar-system-171.png")
+    --background1=love.graphics.newImage("solar-system-171.png")
     background11=love.graphics.newImage("space.png")
+	
+	--if not love.filesystem.exists("scores.lua") then
+		--scores = love.filesystem.newFile("scores.lua")
+		--love.filesystem.write("scores.lua", "pera")
+	--end
+	
+
+	
+	
 
 end
 
@@ -40,11 +49,28 @@ function love.update(dt)
         if love.keyboard.isDown("return") then
             V.gamestate="play"
         end
+		if love.keyboard.isDown("q") then
+			love.event.quit()
+		end
 
         M:update(dt)
-
+		
+		--na esc se moze prekinuti igra tokom pauza menija
+		if love.keyboard.isDown("escape") then
+			if V.score > 0 then
+				V.gamestate="after"
+			end
+		end
+		
+		M:update(dt)
+	 
+--pauza, vraca se na pocetni ekran
     else if V.gamestate=="play" then
-
+		if love.keyboard.isDown("p") then
+            V.gamestate="title"
+			M:update(dt)
+        end
+		
 
         P:update(dt)
         E:update(dt)
@@ -64,6 +90,10 @@ function love.update(dt)
                 --love.graphics.setBackgroundColor(0,0,0)
                 love.load()
             end
+			if love.keyboard.isDown("q") then
+				love.event.quit()
+			end
+			
         --end
         --if V.gameOver==true then
         --    --            love.graphics.print("SCORE: " .. score .. "\nACCURACY: " .. score/bulletsUsed,height/2,width/2)
@@ -145,7 +175,7 @@ function love.draw()
             love.graphics.setFont(font1)
             love.graphics.printf("score "..V.score,0,V.height/2-font1:getHeight()/2,800,"center")
             love.graphics.setFont(font)
-            love.graphics.printf("press enter to return to menu ",0,V.height/2-font1:getHeight()/2+50,800,"center")
+            love.graphics.printf("press enter to play again ",0,V.height/2-font1:getHeight()/2+50,800,"center")
 
             --love.graphics.printf("score "..V.score,0,V.height/2-font:getHeight()/2,800,"center")
         end

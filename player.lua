@@ -165,14 +165,14 @@ end
 function P:update(dt)
 
     if love.keyboard.isDown("down") then
-        if P.player.y<550 then -- uslov ostajanja na ekranu
+        if P.player.y<450 then -- uslov ostajanja na ekranu
             --currentFrame=1
             frame=picDole
             P.player.y=P.player.y+P.player.speed*dt
         end
     end
     if love.keyboard.isDown("up") then
-        if P.player.y>0 then
+        if P.player.y>10 then
             --currentFrame=1
             frame=picGore
             P.player.y=P.player.y-P.player.speed*dt
