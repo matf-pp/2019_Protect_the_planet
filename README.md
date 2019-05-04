@@ -21,21 +21,15 @@ Alternativno, prevlacenjem folder-a na *love.exe*.
 
 ## Komande u igri
 
-enter - pokretanje nove igre
-
-strelice gore/dole - kretanje gore/dole
-
-space - pucanje
-
-P - pauza
-
-K - superpower, unistavaju se svi neprijatelji
-
-esc - izlazak u score meni tokom pauze
-
-Q - izlazak iz igre tokom pauze
-
-M - gasenje/paljenje svih zvukova
+:arrow_up: Kretanje gore  
+:arrow_down: Kretanje dole  
+**ENTER** Pokretanje nove igre  
+**SPACE** Pucanje  
+**K** Super power  
+**M** Mute  
+**P** Pauza  
+**Q** Izlazak iz igrice  
+**ESC** Tokom pauze, zavrsetak trenutne instance igre
 
 ## Autori
 
