@@ -15,7 +15,7 @@ gameOver=false
 
 --gamestate="title"
 
-
+local mute = 0
 
 function love.load()
     P=require "player"
@@ -24,7 +24,13 @@ function love.load()
     V=require "values"
     U=require "upgrades"
     M=require "menu"
-
+	
+	saber2 = love.audio.newSource("saber2.mp3","static")
+	saber2:setVolume(0.3)
+	bkgmusic = love.audio.newSource("bkgmusic.mp3","static")
+	bkgmusic:setVolume(0.6)
+	boomef = love.audio.newSource("boom.mp3","static")
+	boomef:setVolume(0.6)
     font = love.graphics.newFont("AVENGEANCE HEROIC AVENGER.ttf", 15)
     font1 = love.graphics.newFont("AVENGEANCE HEROIC AVENGER.ttf", 64)
     love.graphics.setFont(font)
@@ -32,6 +38,7 @@ function love.load()
     background=love.graphics.newImage("ironmanb1.png")
     --background1=love.graphics.newImage("solar-system-171.png")
     background11=love.graphics.newImage("space.png")
+	background12=love.graphics.newImage("spaceboom.png")
 	
 	--if not love.filesystem.exists("scores.lua") then
 		--scores = love.filesystem.newFile("scores.lua")
@@ -45,6 +52,16 @@ function love.load()
 end
 
 function love.update(dt)
+
+	if mute==1 then
+		bkgmusic:setVolume(0)
+		saber2:setVolume(0)
+		boomef:setVolume(0)
+	else
+		bkgmusic:setVolume(0.6)
+		saber2:setVolume(0.3)
+		boomef:setVolume(0.6)
+	end
     if V.gamestate=="title" then
         if love.keyboard.isDown("return") then
             V.gamestate="play"
@@ -70,7 +87,13 @@ function love.update(dt)
             V.gamestate="title"
 			M:update(dt)
         end
-		
+		if love.keyboard.isDown("m") then
+			if mute==0 then
+				mute = 1
+			else
+				mute = 0
+			end
+		end
 
         P:update(dt)
         E:update(dt)
@@ -152,7 +175,7 @@ function love.draw()
         love.graphics.setColor(255,255,255)
         --love.graphics.scale(2,2)
         love.graphics.draw(background11,0,0)
-
+		bkgmusic:play()
         P.player:draw()
         E:draw()
         U:draw()
