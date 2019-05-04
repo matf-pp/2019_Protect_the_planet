@@ -20,6 +20,7 @@ Pokretanjem *ProtectThePlanet.exe*. (izvrsni fajl je napravljen za *Windows*)
 Alternativno, prevlacenjem folder-a na *love.exe*.
 
 Komande u igri:
+
 enter - pokretanje nove igre
 strelice gore/dole - kretanje gore/dole
 space - pucanje
