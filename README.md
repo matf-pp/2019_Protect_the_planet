@@ -46,6 +46,9 @@ During game, there will be gifts falling down which represent upgrades and downg
 **Q** Quit  
 **ESC** While paused, finish current instance of game
 
+## Demo
+
+![demo](https://github.com/bambalic/pp-seminarski/blob/master/demo.gif)
 
 ## Programming languages and technologies
 
