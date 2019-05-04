@@ -19,6 +19,16 @@ Pokretanjem *ProtectThePlanet.exe*. (izvrsni fajl je napravljen za *Windows*)
 
 Alternativno, prevlacenjem folder-a na *love.exe*.
 
+Komande u igri:
+enter - pokretanje nove igre
+strelice gore/dole - kretanje gore/dole
+space - pucanje
+P - pauza
+K - superpower, unistavaju se svi neprijatelji
+esc - izlazak u score meni tokom pauze
+Q - izlazak iz igre tokom pauze
+M - gasenje/paljenje svih zvukova
+
 ## Autori
 
 Lazar Perisic, *lakiwow95[at]gmail.com*  
