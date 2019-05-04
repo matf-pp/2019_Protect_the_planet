@@ -1,7 +1,7 @@
 --V=require "values"
 
 local C={}
-
+picBoom = love.graphics.newImage("boom.png")
 
 -- proveravamo pogotke i mete koje su pogodjene brisemo iz tabele
 -- svaki cetvrti bullet moze da unisti 4 mete
@@ -29,9 +29,12 @@ function C.destroyAll(enemies)
     for i,enemy in pairs(enemies) do
         if enemy.x>0 then
             enemies[i]=nil
+
+			
             V.score=V.score+1
         end
     end
+	love.graphics.draw(picBoom,40, 40)
 end
 
 
