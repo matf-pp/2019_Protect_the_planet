@@ -19,7 +19,7 @@ Pokretanjem *ProtectThePlanet.exe*. (izvrsni fajl je napravljen za *Windows*)
 
 Alternativno, prevlacenjem folder-a na *love.exe*.
 
-## Komande u igri:
+## Komande u igri
 
 enter - pokretanje nove igre
 
