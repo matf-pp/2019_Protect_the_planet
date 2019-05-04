@@ -75,7 +75,7 @@ function E.enemiesAll:spawnEnemies(x,y)
     local enemy={}
     enemy.x=x
     --    enemy.y=y
-    enemy.y=love.math.random(0,V.height-80)
+    enemy.y=love.math.random(0,V.height-150)
     enemy.width=64
     enemy.height=64
     enemy.color=love.math.random(1,3)
@@ -101,6 +101,7 @@ function E:update(dt)
                             V.gameOver=true
                 V.gamestate="after"
         end
+		
     end
 
     -- povecava se brzina enemies-a
