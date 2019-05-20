@@ -52,7 +52,7 @@ During game, there will be gifts falling down which represent upgrades and downg
 
 ## Programming languages and technologies
 
-This project is implemented using *Lua (5.2.4)* programming language and *LÖVE (11.2.0)* framework.
+This project is implemented using *Lua* programming language and *LÖVE (11.2.0)* framework.
 
 ## Usage instructions
 
