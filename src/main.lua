@@ -7,7 +7,7 @@ function love.load()
     U=require "upgrades"
     M=require "menu"
     S=require "sound"
-
+    H=require "help"
 
     font = love.graphics.newFont("AVENGEANCE HEROIC AVENGER.ttf", 15)
     font1 = love.graphics.newFont("AVENGEANCE HEROIC AVENGER.ttf", 64)
@@ -20,6 +20,17 @@ function love.load()
 
 end
 
+function love.keypressed(key, scancode, isrepeat)
+    if key == "h" then
+        if V.gamestate=="title" then
+            V.gamestate="help"
+        else if V.gamestate=="help" then
+            V.gamestate="title"
+        end
+        end
+    end
+end
+
 function love.update(dt)
 
     S:update(dt)
@@ -29,9 +40,11 @@ function love.update(dt)
             V.gamestate="play"
             V.started=true
         end
+
 		if love.keyboard.isDown("q") then
 			love.event.quit()
 		end
+
 
         M:update(dt)
 
@@ -41,6 +54,11 @@ function love.update(dt)
 				V.gamestate="after"
 			end
 		end
+
+    --else if V.gamestate=="help" then
+    --    if love.keyboard.isDown("escape") then
+    --        V.gamestate="title"
+    --    end
 
 
     --pauza, vraca se na pocetni ekran
@@ -59,8 +77,8 @@ function love.update(dt)
             C.checkHit(E.enemiesAll.enemies,P.player.bullets)
             C.checkHitUpgrades(U.upgradesAll.upgrades,P.player.bullets)
 
-            else
-            --else if V.gamestate=="after" then
+            --else
+            else if V.gamestate=="after" then
                 if love.keyboard.isDown("return") then
                     package.loaded["enemy"] = nil
                     package.loaded["player"] = nil
@@ -73,10 +91,10 @@ function love.update(dt)
                 if love.keyboard.isDown("q") then
                     love.event.quit()
                 end
-
+                end
         end
-
-    end
+        end
+    --end
 end
 
 
@@ -117,7 +135,13 @@ function love.draw()
             love.graphics.printf("press enter to play again ",0,V.height/2-font1:getHeight()/2+50,800,"center")
             love.graphics.printf("Developed:\n\nLazar Perisic\n\nMilos Djuric",350,500,100,"center")
 
+    else if V.gamestate=="help" then
+                H:draw()
 
+                else if V.gamestate=="j" then
+                    love.graphics.circle("fill", 300,400,50)
+                end
+            end
         end
         end
     end
